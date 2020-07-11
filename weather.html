@@ -14,13 +14,12 @@
 <body>
   <!-- Image and text -->
   <div class="content container px-0">
-    <nav class="navbar navbar-light justify-content-around" style="background-color: rgb(255, 255, 240);">
-      <a class="navbar-brand" href="/">
-        WEATHER-io
-      </a>
+    <nav class="navbar navbar-light justify-content-around bg-transparent"
+      style="background-color: rgb(255, 255, 240);">
+      <span id="brand">WEATHER-io</span>
       <div>
         <span>LIGHT</span>
-        <label class="switch">
+        <label id="light-dark-theme" class="switch">
           <input type="checkbox">
           <span class="slider round"></span>
         </label>
@@ -28,7 +27,7 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div>
       <div class="input-group mx-auto my-2 w-75">
         <input type="text" class="form-control" placeholder="Enter a city name" aria-label="City name"
           aria-describedby="button-addon2">
@@ -37,8 +36,8 @@
         </div>
       </div>
       <main>
-        <div class="container ext-weather mb-3">
-          <div class="row weather-head p-4 d-flex">
+        <div class="container ext-weather">
+          <div class="weather-head row p-4 d-flex">
 
             <div class="temperature text-center col-md-4">
               <h1 class="display-4">12 °C</h1>
@@ -48,45 +47,52 @@
               <h3>Paris, FRANCE</h3>
             </div>
           </div>
-          <!-- <hr> -->
           <div class="row p-4 forecast">
-            <div class="col-md-3 col-6">
-              <div class="day">
+            <div class="col-md-4">
+              <!-- <h3>Twitter stuff</h3> -->
+            </div>
+            <div class="col-md-8">
 
-                <h2 class="weekday">Monday</h2>
-                <span class="day-temp">16<sup>°C</sup></span>
-                <img class="day-icon" src="/3127120-weather/svg/001-moon.svg" alt="moon">
-                <span class="weather-desc">Cloudy</span>
+              <div class="row">
+
+                <div class="col-md-3 col-6">
+                  <div class="day p-1">
+
+                    <h2 class="weekday">Monday</h2>
+                    <span class="day-temp">16<sup>°C</sup></span>
+                    <img class="day-icon" src="/3127120-weather/svg/001-moon.svg" alt="moon">
+                    <span class="weather-desc">Cloudy</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="day p-1">
+
+                    <h2 class="weekday">Tuesday</h2>
+                    <span class="day-temp">16<sup>°C</sup></span>
+                    <img class="day-icon" src="/3127120-weather/svg/023-full moon.svg" alt="moon">
+                    <span class="weather-desc">Cloudy</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="day p-1">
+
+                    <h2 class="weekday">Wednesday</h2>
+                    <span class="day-temp">16<sup>°C</sup></span>
+                    <img class="day-icon" src="/3127120-weather/svg/026-night.svg" alt="moon">
+                    <span class="weather-desc">Cloudy</span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6">
+                  <div class="day p-1">
+
+                    <h2 class="weekday">Thursday</h2>
+                    <span class="day-temp">16<sup>°C</sup></span>
+                    <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon">
+                    <span class="weather-desc">Cloudy</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-md-3 col-6">
-              <div class="day">
-
-                <h2 class="weekday">Tuesday</h2>
-                <span class="day-temp">16<sup>°C</sup></span>
-                <img class="day-icon" src="/3127120-weather/svg/023-full moon.svg" alt="moon">
-                <span class="weather-desc">Cloudy</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-6">
-              <div class="day">
-
-                <h2 class="weekday">Wednesday</h2>
-                <span class="day-temp">16<sup>°C</sup></span>
-                <img class="day-icon" src="/3127120-weather/svg/026-night.svg" alt="moon">
-                <span class="weather-desc">Cloudy</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-6">
-              <div class="day">
-
-                <h2 class="weekday">Thursday</h2>
-                <span class="day-temp">16<sup>°C</sup></span>
-                <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon">
-                <span class="weather-desc">Cloudy</span>
-              </div>
-            </div>
-
             <!-- <ul class="days-group d-flex flex-wrap justify-content-around list-unstyled"> -->
 
           </div>
@@ -100,7 +106,6 @@
 
 
 
-
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
@@ -110,6 +115,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+  <script src="/app.js"></script>
 </body>
 
 </html>

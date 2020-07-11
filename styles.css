@@ -5,18 +5,16 @@ body {
   align-items: center;
   min-height: 100vh;
 }
+body.dark {
+  background: #676767;
+  color: #cfcfcf;
+}
 nav {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-.ext-weather {
-  height: 60vh;
-}
-.forecast {
-  height: 38%;
-}
-.weather-head {
-  height: 62%;
+nav.dark {
+  background-color: transparent !important;
 }
 .days-group > * {
   margin: 1em 0;
@@ -38,8 +36,10 @@ nav {
   border-radius: 7px;
   text-align: center;
   margin-bottom: 1vh;
-  /* padding: 1vw; */
   box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+}
+.day.dark {
+  box-shadow: 5px 5px 5px rgba(145, 145, 145, 0.6);
 }
 .day-temp {
   font-weight: bold;
@@ -48,6 +48,9 @@ nav {
 .ext-weather {
   background: ivory;
 }
+.ext-weather.dark {
+  background: #493456;
+}
 .weather-head {
   background: linear-gradient(
     90deg,
@@ -55,29 +58,36 @@ nav {
     rgba(0, 212, 255, 1) 100%
   );
 }
+.weather-head.dark {
+  background: linear-gradient(90deg, rgb(86, 93, 132) 0%, rgb(54, 53, 74) 100%);
+}
 .content {
   background: linear-gradient(
     90deg,
     rgba(147, 165, 207, 1) 0%,
     rgba(228, 239, 233, 1) 50%
   );
+  /* background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); */
   min-height: 60vh;
   width: 97%;
   border-radius: 10px;
   box-shadow: 9px 10px 5px rgba(68, 68, 68, 0.6);
+}
+.content.dark {
+  background: rgb(100, 16, 53);
+  background: radial-gradient(
+    circle,
+    rgba(100, 16, 53, 1) 0%,
+    rgba(59, 93, 132, 1) 100%
+  );
 }
 
 @media only screen and (min-width: 768px) {
   .ext-weather {
     height: 60vh;
   }
-  .forecast {
-    height: 38%;
-  }
   .weather-head {
     height: 62%;
-  }
-  .weekday {
-    font-size: 1.1rem;
   }
 }
