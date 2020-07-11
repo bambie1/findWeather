@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="slider.css">
+  <title>Weather app</title>
+</head>
+
+<body>
+  <!-- Image and text -->
+  <div class="content container px-0">
+    <nav class="navbar navbar-light justify-content-around" style="background-color: rgb(255, 255, 240);">
+      <a class="navbar-brand" href="/">
+        WEATHER-io
+      </a>
+      <div>
+        <span>LIGHT</span>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+        <span>DARK </span>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="input-group mx-auto my-2 w-75">
+        <input type="text" class="form-control" placeholder="Enter a city name" aria-label="City name"
+          aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Get weather</button>
+        </div>
+      </div>
+      <main>
+        <div class="container ext-weather mb-3">
+          <div class="row weather-head p-4 d-flex justify-content-between">
+
+            <div class="temperature text-center col-md-4">
+              <h1 class="display-4">12 °C</h1>
+              <p class="lead">Cloudy</p>
+            </div>
+            <div class="city-name text-center col-md-8">
+              <h3>Paris, FRANCE</h3>
+            </div>
+          </div>
+
+          <!-- <hr> -->
+          <div class="forecast p-4">
+            <ul class="days-group d-flex flex-wrap justify-content-around list-unstyled">
+              <li class="day">
+                <h2 class="weekday">Monday</h2>
+                <span class="day-temp">16<sup>°C</sup></span>
+                <figure>
+                  <img class="day-icon" src="/3127120-weather/3127120-weather/svg/001-moon.svg" alt="moon">
+                  <figcaption>Cloudy</figcaption>
+                </figure>
+              </li>
+              <li class="day">
+                <h2 class="weekday">Tuesday </h2>
+                <span class="day-temp">16<sup>°C</sup></span>
+                <figure>
+                  <img class="day-icon" src="/3127120-weather/3127120-weather/svg/001-moon.svg" alt="moon">
+                  <figcaption>Cloudy</figcaption>
+                </figure>
+              </li>
+              <li class="day">
+                <h2 class="weekday"> Wednesday</h2>
+                <span class="day-temp">16<sup>°C</sup></span>
+                <figure>
+                  <img class="day-icon" src="/3127120-weather/3127120-weather/svg/003-storm.svg" alt="moon">
+                  <figcaption>Cloudy</figcaption>
+                </figure>
+              </li>
+              <li class="day">
+                <h2 class="weekday">Thursday</h2>
+                <span class="day-temp">16<sup>°C</sup></span>
+                <figure>
+                  <img class="day-icon" src="/3127120-weather/3127120-weather/svg/010-rain drops.svg" alt="moon">
+                  <figcaption>Cloudy</figcaption>
+                </figure>
+              </li>
+              <li class="day">
+                <h2 class="weekday">Friday</h2>
+                <span class="day-temp">16<sup>°C</sup></span>
+                <figure>
+                  <img class="day-icon" src="/3127120-weather/3127120-weather/svg/001-moon.svg" alt="moon">
+                  <figcaption>Cloudy</figcaption>
+                </figure>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+  </div>
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
