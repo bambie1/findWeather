@@ -24,6 +24,10 @@ nav.dark {
 #brand {
   font-weight: 800;
 }
+.date {
+  color: grey;
+  font-size: 0.85rem;
+}
 .main-content,
 .ext-weather {
   flex-grow: 1;
