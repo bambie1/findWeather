@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  //dark theme add class
   $("#light-dark-theme").change(function () {
     $(".content").toggleClass("dark");
     $("body").toggleClass("dark");
@@ -8,18 +9,44 @@ $(document).ready(function () {
     $(".day").toggleClass("dark");
   });
 
-  // by default, icons are black but you can color them
+  // SKYCONS animation references
   var skycons = new Skycons();
-
-  // you can add a canvas by it's ID...
-  skycons.add("icon1", Skycons.PARTLY_CLOUDY_DAY);
-
-  // ...or by the canvas DOM element itself.
-  skycons.add(document.getElementById("icon2"), Skycons.RAIN);
-  skycons.add(document.getElementById("icon3"), Skycons.PARTLY_CLOUDY_NIGHT);
-  skycons.add(document.getElementById("icon4"), Skycons.RAIN);
-  skycons.add(document.getElementById("icon5"), Skycons.CLEAR_DAY);
-  skycons.add(document.getElementById("icon6"), Skycons.CLEAR_NIGHT);
+  $(".rainy").each(function () {
+    skycons.add(this, Skycons.RAIN);
+  });
+  $(".partly-cloudy").each(function () {
+    skycons.add(this, Skycons.PARTLY_CLOUDY_NIGHT);
+  });
+  $(".clear-day").each(function () {
+    skycons.add(this, Skycons.CLEAR_DAY);
+  });
+  $(".clear-night").each(function () {
+    skycons.add(this, Skycons.CLEAR_NIGHT);
+  });
+  $(".partly-cloudy-day").each(function () {
+    skycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
+  });
+  $(".thunder").each(function () {
+    skycons.add(this, Skycons.THUNDER);
+  });
+  $(".fog").each(function () {
+    skycons.add(this, Skycons.FOG);
+  });
+  $(".snow").each(function () {
+    skycons.add(this, Skycons.SNOW);
+  });
+  $(".cloudy").each(function () {
+    skycons.add(this, Skycons.CLOUDY);
+  });
+  $(".wind").each(function () {
+    skycons.add(this, Skycons.WIND);
+  });
+  $(".showers-day").each(function () {
+    skycons.add(this, Skycons.SHOWERS_DAY);
+  });
+  $(".showers-night").each(function () {
+    skycons.add(this, Skycons.SHOWERS_NIGHT);
+  });
 
   skycons.play();
 });

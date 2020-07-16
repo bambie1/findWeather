@@ -16,7 +16,7 @@
   <div class="container content d-flex flex-column px-0 py-2">
     <nav class="navbar navbar-light justify-content-around bg-transparent"
       style="background-color: rgb(255, 255, 240);">
-      <span id="brand">WEATHER-io</span>
+      <span id="brand"><a href="/home.html">WEATHER-io</a></span>
       <div class="align-items-center d-flex">
         <span class="mr-1"><i class="far fa-lightbulb"></i></span>
         <!-- <span class="mr-1"><i class="far fa-sun"></i></span> -->
@@ -33,21 +33,19 @@
 
       <div class="container ext-weather">
         <div class="weather-head row p-3 d-flex">
-          <!-- <img class="weather-img" src="/bg-images/snow_unsplash.jpg" alt="snow bg"> -->
           <div class="temperature text-center col-md-4">
             <h1 class="display-4">12 °C</h1>
-            <!-- <img class="current-icon" src="/3127120-weather/svg/023-full moon.svg" alt="moon"> -->
-            <canvas id="icon1" width="128" height="128"></canvas>
+            <canvas id="icon1" class="fog" width="128" height="128"></canvas>
             <p class="lead current-desc">CLOUDY</p>
-            <p><i class="fas fa-sort-down"></i>12°C <i class="fas fa-sort-up ml-2"></i>19°C</p>
-            <div class="d-flex justify-content-around">
-              <p><i class="fas fa-wind mr-2"></i> 25 km/h</p>
-              <p><i class="fas fa-umbrella mr-2"></i> 1 %</p>
-            </div>
           </div>
 
-          <div class="city-name text-center col-md-8">
-            <h3><i class="fas fa-map-marker-alt mr-2"></i> Paris, FRANCE</h3>
+          <div class="justify-content-center text-center col-md-8 d-flex flex-column">
+            <p class="min-max-temp"><i class="fas fa-sort-down"></i>12°C <i class="fas fa-sort-up ml-2"></i>19°C</p>
+            <div class="d-flex extra-weather-info justify-content-center my-md-2">
+              <p class="mr-4"><i class="fas fa-wind mr-2"></i> 25 km/h</p>
+              <p><i class="fas fa-umbrella mr-2"></i> 1 %</p>
+            </div>
+            <h3 class="location"><i class="fas fa-map-marker-alt mr-2"></i> Paris, FRANCE</h3>
             <span class="date">Monday, July 13, 2020 @ 7:30pm EST</span>
           </div>
         </div>
@@ -57,90 +55,38 @@
             <h2 class="weekday">Monday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
             <!-- <img class="day-icon" src="/3127120-weather/svg/001-moon.svg" alt="moon"> -->
-            <canvas id="icon2" width="40" height="40"></canvas>
+            <canvas id="icon2" class="rainy" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Tuesday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
             <!-- <img class="day-icon" src="/3127120-weather/svg/023-full moon.svg" alt="moon"> -->
-            <canvas id="icon3" width="40" height="40"></canvas>
+            <canvas id="icon3" class="partly-cloudy" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Wednesday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
             <!-- <img class="day-icon" src="/3127120-weather/svg/026-night.svg" alt="moon"> -->
-            <canvas id="icon4" width="40" height="40"></canvas>
+            <canvas id="icon4" class="rainy" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Thursday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
             <!-- <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon"> -->
-            <canvas id="icon5" width="40" height="40"></canvas>
+            <canvas id="icon5" class="clear-night" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Friday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
             <!-- <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon"> -->
-            <canvas id="icon6" width="40" height="40"></canvas>
+            <canvas id="icon6" class="rainy" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
         </ul>
-        <!-- <div class="row p-4 forecast">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-8">
-
-            <div class="row">
-
-              <div class="col-md-2 col-6">
-                <div class="day p-1">
-
-                  <h2 class="weekday">Monday</h2>
-                  <span class="day-temp">16<sup>°C</sup></span>
-                  <img class="day-icon" src="/3127120-weather/svg/001-moon.svg" alt="moon">
-                  <span class="weather-desc">Cloudy</span>
-                </div>
-              </div>
-              <div class="col-md-2 col-6">
-                <div class="day p-1">
-                  <h2 class="weekday">Tuesday</h2>
-                  <span class="day-temp">16<sup>°C</sup></span>
-                  <img class="day-icon" src="/3127120-weather/svg/023-full moon.svg" alt="moon">
-                  <span class="weather-desc">Cloudy</span>
-                </div>
-              </div>
-              <div class="col-md-2 col-6">
-                <div class="day p-1">
-                  <h2 class="weekday">Wednesday</h2>
-                  <span class="day-temp">16<sup>°C</sup></span>
-                  <img class="day-icon" src="/3127120-weather/svg/026-night.svg" alt="moon">
-                  <span class="weather-desc">Cloudy</span>
-                </div>
-              </div>
-              <div class="col-md-2 col-6">
-                <div class="day p-1">
-                  <h2 class="weekday">Thursday</h2>
-                  <span class="day-temp">16<sup>°C</sup></span>
-                  <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon">
-                  <span class="weather-desc">Cloudy</span>
-                </div>
-              </div>
-              <div class="col-md-2 col-6 mx-auto">
-                <div class="day p-1">
-                  <h2 class="weekday">Friday</h2>
-                  <span class="day-temp">16<sup>°C</sup></span>
-                  <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon">
-                  <span class="weather-desc">Cloudy</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div> -->
       </div>
     </div>
     <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a

@@ -68,32 +68,53 @@ nav.dark {
 }
 
 .content {
-  /* background: linear-gradient(to bottom, #e9e9e9 0%, #e1dad0 60%, #cec0b2 100%); */
-  height: 100vh;
-  /* width: 97%; */
+  min-height: 100vh;
 }
-/* .content.dark {
-  background: rgb(100, 16, 53);
-  background: linear-gradient(
-    90deg,
-    rgba(100, 16, 53, 1) 0%,
-    rgba(59, 93, 132, 1) 100%
-  );
-} */
 .daily-forecast-list {
   list-style: none;
   padding: 1vw;
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+/* Home page */
+.cities-list {
+  list-style: none;
+}
+.city-block {
+  border: 1px solid grey;
+  border-radius: 3%;
+  box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
+  cursor: pointer;
+  margin: 0 2vw 2vh;
+  width: 100%;
+}
+.city-block:hover {
+  transform: scale(1.1);
+  transition-duration: 2s;
+}
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 @media only screen and (min-width: 768px) {
   .content {
     height: auto;
   }
-  /* .content {
-    height: 60vh;
-    width: 97%;
-    border-radius: 10px;
-    box-shadow: 9px 10px 5px rgba(68, 68, 68, 0.6);
-  } */
+  .min-max-temp {
+    order: 4;
+  }
+  .extra-weather-info {
+    order: 3;
+  }
+  .location {
+    order: 1;
+  }
+  .date {
+    order: 2;
+  }
+  .city-block {
+    width: auto;
+  }
 }
