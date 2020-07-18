@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="slider.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/slider.css') }}">
   <title>Weather app</title>
 </head>
 
@@ -16,7 +16,7 @@
   <div class="container content d-flex flex-column px-0 py-2">
     <nav class="navbar navbar-light justify-content-around bg-transparent"
       style="background-color: rgb(255, 255, 240);">
-      <span id="brand"><a href="/home.html">WEATHER-io</a></span>
+      <span id="brand"><a href="/">WEATHER-io</a></span>
       <div class="align-items-center d-flex">
         <span class="mr-1"><i class="far fa-lightbulb"></i></span>
         <!-- <span class="mr-1"><i class="far fa-sun"></i></span> -->
@@ -34,18 +34,19 @@
       <div class="container ext-weather">
         <div class="weather-head row p-3 d-flex">
           <div class="temperature text-center col-md-4">
-            <h1 class="display-4">12 °C</h1>
-            <canvas id="icon1" class="fog" width="128" height="128"></canvas>
-            <p class="lead current-desc">CLOUDY</p>
+            <h1 class="display-4">{{info.main.temp|int}} °C</h1>
+            <canvas class="fog" width="128" height="128"></canvas>
+            <p class="lead text-uppercase">{{info.weather[0].description}}</p>
           </div>
 
           <div class="justify-content-center text-center col-md-8 d-flex flex-column">
-            <p class="min-max-temp"><i class="fas fa-sort-down"></i>12°C <i class="fas fa-sort-up ml-2"></i>19°C</p>
+            <p class="min-max-temp"><i class="fas fa-sort-down"></i>{{info.main.temp_min|int}}°C <i
+                class="fas fa-sort-up ml-2"></i>{{info.main.temp_max|int}}°C</p>
             <div class="d-flex extra-weather-info justify-content-center my-md-2">
-              <p class="mr-4"><i class="fas fa-wind mr-2"></i> 25 km/h</p>
-              <p><i class="fas fa-umbrella mr-2"></i> 1 %</p>
+              <p class="mr-4"><i class="fas fa-wind mr-2"></i> {{info.wind.speed}} m/s</p>
+              <p><i class="fas fa-umbrella mr-2"></i> {{info.main.humidity}} %</p>
             </div>
-            <h3 class="location"><i class="fas fa-map-marker-alt mr-2"></i> Paris, FRANCE</h3>
+            <h3 class="location"><i class="fas fa-map-marker-alt mr-2"></i> {{info.name}}, {{info.sys.country}}</h3>
             <span class="date">Monday, July 13, 2020 @ 7:30pm EST</span>
           </div>
         </div>
@@ -54,36 +55,31 @@
           <li class="day p-1">
             <h2 class="weekday">Monday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
-            <!-- <img class="day-icon" src="/3127120-weather/svg/001-moon.svg" alt="moon"> -->
-            <canvas id="icon2" class="rainy" width="40" height="40"></canvas>
+            <canvas class="rainy" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Tuesday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
-            <!-- <img class="day-icon" src="/3127120-weather/svg/023-full moon.svg" alt="moon"> -->
-            <canvas id="icon3" class="partly-cloudy" width="40" height="40"></canvas>
+            <canvas class="partly-cloudy-night" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Wednesday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
-            <!-- <img class="day-icon" src="/3127120-weather/svg/026-night.svg" alt="moon"> -->
-            <canvas id="icon4" class="rainy" width="40" height="40"></canvas>
+            <canvas class="rainy" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Thursday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
-            <!-- <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon"> -->
-            <canvas id="icon5" class="clear-night" width="40" height="40"></canvas>
+            <canvas class="clear-night" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
           <li class="day p-1">
             <h2 class="weekday">Friday</h2>
             <span class="day-temp">16<sup>°C</sup></span>
-            <!-- <img class="day-icon" src="/3127120-weather/svg/020-snowflakes.svg" alt="moon"> -->
-            <canvas id="icon6" class="rainy" width="40" height="40"></canvas>
+            <canvas class="rainy" width="40" height="40"></canvas>
             <span class="weather-desc">Cloudy</span>
           </li>
         </ul>
@@ -107,7 +103,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-  <script src="/app.js"></script>
+  <script src="{{ url_for('static',filename='app.js') }}"></script>
 </body>
 
 </html>

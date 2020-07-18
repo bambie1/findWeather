@@ -14,7 +14,7 @@ $(document).ready(function () {
   $(".rainy").each(function () {
     skycons.add(this, Skycons.RAIN);
   });
-  $(".partly-cloudy").each(function () {
+  $(".partly-cloudy-night").each(function () {
     skycons.add(this, Skycons.PARTLY_CLOUDY_NIGHT);
   });
   $(".clear-day").each(function () {
