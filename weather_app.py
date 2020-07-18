@@ -25,7 +25,7 @@ def search_city(city_name):
   w_code = w_res["current"]["weather"][0]["icon"]
   w_res["current"]["weather"][0]["class_name"] = code_to_class[w_code]
 
-  #remove current and last two days (website preference)
+  #remove current and last two days (personal preference)
   del w_res["daily"][-2:]
   w_res["daily"].pop(0)
   #add class to forecast list

@@ -1,16 +1,26 @@
 $(document).ready(function () {
-  //dark theme add class
-  $("#light-dark-theme").change(function () {
-    $(".content").toggleClass("dark");
-    $("body").toggleClass("dark");
-    $("nav").toggleClass("dark");
-    $(".ext-weather").toggleClass("dark");
-    $(".weather-head").toggleClass("dark");
-    $(".day").toggleClass("dark");
-    $(".weather-icon").toggleClass("dark");
-    activateSkycons();
-  });
+  //local storage to save dark mode preferences
+  var darkMode = localStorage.getItem("darkMode");
+  darkMode === "enabled" ? enableDarkMode() : null;
 
+  function enableDarkMode() {
+    localStorage.setItem("darkMode", "enabled");
+    $("body *").addClass("dark");
+    $("body").addClass("dark");
+    $("#light-dark-theme input").prop("checked", true);
+  }
+  function disableDarkMode() {
+    localStorage.setItem("darkMode", null);
+    $("body *").removeClass("dark");
+    $("body").removeClass("dark");
+  }
+  //dark theme toggle
+  $("#light-dark-theme").change(function () {
+    darkMode = localStorage.getItem("darkMode");
+    activateSkycons();
+
+    darkMode === "enabled" ? disableDarkMode() : enableDarkMode();
+  });
   activateSkycons();
 });
 
@@ -46,7 +56,7 @@ function activateSkycons() {
   $(".partly-cloudy-day").each(function () {
     skycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
   });
-  $(".partly-cloudy-day .dark").each(function () {
+  $(".partly-cloudy-day.dark").each(function () {
     darkskycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
   });
   $(".thunder").each(function () {

@@ -17,6 +17,11 @@
     <nav class="navbar navbar-light justify-content-around bg-transparent"
       style="background-color: rgb(255, 255, 240);">
       <span id="brand"><a href="/">WEATHER-io</a></span>
+      <div class="units d-flex align-items-center">
+        <a href="">°C</a>
+        <p class="mx-2 my-0">|</p>
+        <a href="">°F</a>
+      </div>
       <div class="align-items-center d-flex">
         <span class="mr-1"><i class="far fa-lightbulb"></i></span>
         <!-- <span class="mr-1"><i class="far fa-sun"></i></span> -->
@@ -53,10 +58,11 @@
         <hr>
         <ul class="d-flex daily-forecast-list">
           {% for day in forecast %}
-          <li class="day p-1">
+          <li class="d-flex day flex-column p-1">
             <h2 class="weekday">{{day.weekday}}</h2>
             <span class="day-temp">{{day.temp.day|int}}<sup>°C</sup></span>
-            <canvas class="{{day.weather[0].class_name}}" width="40" height="40"></canvas>
+            <canvas class="{{day.weather[0].class_name}} weather-icon align-self-center" width="40"
+              height="40"></canvas>
             <span class="weather-desc">{{day.weather[0].description}}</span>
             <!-- The description can be changed to main as you like -->
           </li>

@@ -17,6 +17,11 @@
     <nav class="navbar navbar-light justify-content-around bg-transparent"
       style="background-color: rgb(255, 255, 240);">
       <span id="brand"><a href="/">WEATHER-io</a></span>
+      <div class="units d-flex align-items-center">
+        <a href="">°C</a>
+        <p class="mx-2 my-0">|</p>
+        <a href="">°F</a>
+      </div>
       <div class="align-items-center d-flex">
         <span class="mr-1"><i class="far fa-lightbulb"></i></span>
         <!-- <span class="mr-1"><i class="far fa-sun"></i></span> -->
@@ -42,7 +47,7 @@
           <a href="/city/query" class="city-links">
             <h2 class="city-name">Ottawa, CA</h2>
             <h1 class="display-4">12 °C</h1>
-            <canvas class="clear-day" width="128" height="128"></canvas>
+            <canvas class="clear-day weather-icon" width="128" height="128"></canvas>
             <p class="lead current-desc">CLOUDY</p>
           </a>
         </li>
@@ -50,7 +55,7 @@
           <a href="/city/query" class="city-links">
             <h2 class="city-name">Ottawa, CA</h2>
             <h1 class="display-4">12 °C</h1>
-            <canvas class="rainy" width="128" height="128"></canvas>
+            <canvas class="rainy weather-icon" width="128" height="128"></canvas>
             <p class="lead current-desc">CLOUDY</p>
           </a>
         </li>
@@ -58,42 +63,12 @@
           <a href="/city/query" class="city-links">
             <h2 class="city-name">Ottawa, CA</h2>
             <h1 class="display-4">12 °C</h1>
-            <canvas class="partly-cloudy-night" width="128" height="128"></canvas>
+            <canvas class="partly-cloudy-night weather-icon" width="128" height="128"></canvas>
             <p class="lead current-desc">CLOUDY</p>
           </a>
         </li>
       </ul>
     </div>
-    <!-- <li class="day p-1">
-            <h2 class="weekday">Monday</h2>
-            <span class="day-temp">16<sup>°C</sup></span>
-            <canvas class="rainy weather-icon" width="40" height="40"></canvas>
-            <span class="weather-desc">Cloudy</span>
-          </li>
-          <li class="day p-1">
-            <h2 class="weekday">Tuesday</h2>
-            <span class="day-temp">16<sup>°C</sup></span>
-            <canvas class="partly-cloudy-night weather-icon" width="40" height="40"></canvas>
-            <span class="weather-desc">Cloudy</span>
-          </li>
-          <li class="day p-1">
-            <h2 class="weekday">Wednesday</h2>
-            <span class="day-temp">16<sup>°C</sup></span>
-            <canvas class="rainy weather-icon" width="40" height="40"></canvas>
-            <span class="weather-desc">Cloudy</span>
-          </li>
-          <li class="day p-1">
-            <h2 class="weekday">Thursday</h2>
-            <span class="day-temp">16<sup>°C</sup></span>
-            <canvas class="clear-night weather-icon" width="40" height="40"></canvas>
-            <span class="weather-desc">Cloudy</span>
-          </li>
-          <li class="day p-1">
-            <h2 class="weekday">Friday</h2>
-            <span class="day-temp">16<sup>°C</sup></span>
-            <canvas class="rainy weather-icon" width="40" height="40"></canvas>
-            <span class="weather-desc">Cloudy</span>
-          </li> -->
   </div>
 
   <!-- <footer>
