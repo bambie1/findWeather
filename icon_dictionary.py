@@ -1,4 +1,4 @@
-{
+code_to_class = {
   "01d": "clear-day",
   "01n": "clear-night",
   "02d": "partly-cloudy-day",
