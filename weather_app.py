@@ -1,7 +1,8 @@
 import config
 import requests
-from flask import Flask,  render_template
+from flask import Flask, request, render_template, redirect, url_for
 from datetime import datetime, timezone
+from geopy.geocoders import Nominatim
 import calendar
 from icon_dictionary import code_to_class
 
@@ -11,10 +12,15 @@ app = Flask(__name__)
 def index():
   city="Ottawa"
   return render_template('home.html')
-  
-@app.route("/weather")
-def weather():
-  return render_template('weather.html')
+
+@app.route("/addcity", methods=['POST'])
+def add_city():
+  city = request.form["cityName"]
+  geolocator = Nominatim(user_agent="weather_app")
+  location = geolocator.geocode(city)
+  print((location.latitude, location.longitude))
+  return redirect(url_for('index'))
+
 
 @app.route("/city/<string:city_name>")
 def search_city(city_name):

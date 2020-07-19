@@ -34,12 +34,12 @@
     </nav>
 
     <div class="home container">
-      <div class="input-group mb-5">
-        <input type="text" class="form-control" placeholder="Start typing a city" aria-label="City name"
-          aria-describedby="button-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add city</button>
-        </div>
+      <div class="d-flex flex-column flex-md-row input-group mb-5">
+        <form action="{{ url_for('add_city') }}" method="post">
+          <input type="search" name="cityName" id="address-input" class="form-control"
+            placeholder="Please enter a city to search" aria-label="City name">
+          <button class="align-self-center btn btn-outline-secondary" type="submit" id="button-addon2">Add city</button>
+        </form>
       </div>
 
       <ul class="cities-list d-flex justify-content-center px-0 flex-wrap">
@@ -85,7 +85,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-  <script src="{{ url_for('static',filename='app.js') }}"></script>
+  <script type="module" src="{{ url_for('static',filename='app.js') }}"></script>
 </body>
 
 </html>

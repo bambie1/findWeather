@@ -17,9 +17,8 @@ $(document).ready(function () {
   //dark theme toggle
   $("#light-dark-theme").change(function () {
     darkMode = localStorage.getItem("darkMode");
-    activateSkycons();
-
     darkMode === "enabled" ? disableDarkMode() : enableDarkMode();
+    activateSkycons();
   });
   activateSkycons();
 });
