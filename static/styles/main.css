@@ -22,6 +22,10 @@ nav {
 nav.dark {
   background-color: transparent !important;
 }
+form {
+  max-width: 400px;
+  margin: auto;
+}
 #brand {
   font-weight: 800;
 }
@@ -68,7 +72,6 @@ nav.dark {
   font-weight: bold;
   font-size: 1.2rem;
 }
-
 .content {
   min-height: 100vh;
 }
@@ -83,7 +86,7 @@ nav.dark {
   background: #424f76;
 }
 #address-input.dark::placeholder {
-  color: white !important;
+  color: rgb(175, 169, 169) !important;
 }
 /* Home page */
 .cities-list {
@@ -109,6 +112,10 @@ nav.dark {
 a {
   text-decoration: none !important;
   color: inherit;
+}
+#search-btn.dark {
+  border: 1px solid #cfcfcf;
+  color: #cfcfcf;
 }
 
 @media only screen and (min-width: 568px) {

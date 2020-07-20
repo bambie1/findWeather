@@ -15,5 +15,6 @@ code_to_class = {
   "11n": "thunder",
   "13d": "snow",
   "13n": "snow",
-  "50d": "fog"
+  "50d": "fog",
+  "50n": "fog",
 }

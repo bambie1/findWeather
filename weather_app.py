@@ -1,26 +1,49 @@
 import config
 import requests
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, jsonify
 from datetime import datetime, timezone
 from geopy.geocoders import Nominatim
 import calendar
 from icon_dictionary import code_to_class
 
 app = Flask(__name__)
+current_cities_weather = []
 
+def get_current_weather(city_lat, city_long):
+  c_res = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={city_lat}&lon={city_long}&appid={config.APP_ID}&units=metric").json()
+  # print(f"city: {c_res['name']}, temp: {c_res['main']['temp']}")
+  return c_res
+
+def get_coordinates(city_name):
+  geolocator = Nominatim(user_agent="weather_app")
+  location = geolocator.geocode(city_name)
+  return {"latitude": location.latitude, "longitude": location.longitude}
+  
 @app.route("/")
 def index():
-  city="Ottawa"
-  return render_template('home.html')
+  print(len(current_cities_weather))
+  return render_template('home.html', cities_weather=current_cities_weather)
 
 @app.route("/addcity", methods=['POST'])
 def add_city():
   city = request.form["cityName"]
-  geolocator = Nominatim(user_agent="weather_app")
-  location = geolocator.geocode(city)
-  print((location.latitude, location.longitude))
-  return redirect(url_for('index'))
+  get_coordinates(city)
+  return redirect(url_for('get_cities'))
 
+@app.route("/cities", methods=["GET", "POST"])
+def get_cities():
+  if request.method == "POST":
+    current_cities_weather = []
+    data = request.get_json()
+    print(data)
+    for city in data["cities"]:
+      coordinates = get_coordinates(city)
+      weather_obj = get_current_weather(coordinates["latitude"], coordinates["longitude"])
+      w_code = weather_obj["weather"][0]["icon"]
+      weather_obj["weather"][0]["class_name"] = code_to_class[w_code]
+      current_cities_weather.append(weather_obj)  
+  # return {"message": "Complete post"}
+  return {"cities_weather": current_cities_weather}
 
 @app.route("/city/<string:city_name>")
 def search_city(city_name):

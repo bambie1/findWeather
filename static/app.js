@@ -21,12 +21,37 @@ $(document).ready(function () {
     activateSkycons();
   });
   activateSkycons();
+
+  var cities = ["Ottawa", "Port Harcourt"];
+  $.ajax({
+    url: "/cities",
+    method: "POST",
+    data: JSON.stringify({ cities: cities }),
+    contentType: "application/json; charset=utf-8",
+    success: function (msg) {
+      // console.log(msg);
+      msg.cities_weather.forEach((element) => {
+        var newItem = `<li class="city-block text-center p-2">
+          <a href="/city/query" class="city-links">
+            <h2 class="city-name">${element.name}</h2>
+            <h1 class="display-4">${element.main.temp} °C</h1>
+            <canvas class="thunder weather-icon" width="128" height="128"></canvas>
+            <p class="lead current-desc">${element.weather[0].description}</p>
+          </a>
+        </li>`;
+        $("#cities-list").append(newItem);
+      });
+      darkMode === "enabled" ? enableDarkMode() : null;
+      activateSkycons();
+      // ${element.weather[0].class_name}
+    },
+  });
 });
 
 function activateSkycons() {
   // SKYCONS animation references
   var skycons = new Skycons();
-  var darkskycons = new Skycons({ color: "white" });
+  var darkskycons = new Skycons({ color: "#cfcfcf" });
 
   $(".rainy").each(function () {
     skycons.add(this, Skycons.RAIN);
@@ -59,10 +84,10 @@ function activateSkycons() {
     darkskycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
   });
   $(".thunder").each(function () {
-    skycons.add(this, Skycons.THUNDER);
+    skycons.add(this, Skycons.THUNDER_SHOWERS_NIGHT);
   });
   $(".thunder.dark").each(function () {
-    darkskycons.add(this, Skycons.THUNDER);
+    darkskycons.add(this, Skycons.THUNDER_SHOWERS_NIGHT);
   });
   $(".fog").each(function () {
     skycons.add(this, Skycons.FOG);
