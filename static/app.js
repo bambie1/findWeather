@@ -29,103 +29,121 @@ $(document).ready(function () {
     data: JSON.stringify({ cities: cities }),
     contentType: "application/json; charset=utf-8",
     success: function (msg) {
-      // console.log(msg);
       msg.cities_weather.forEach((element) => {
-        var newItem = `<li class="city-block text-center p-2">
-          <a href="/city/query" class="city-links">
-            <h2 class="city-name">${element.name}</h2>
-            <h1 class="display-4">${element.main.temp} °C</h1>
-            <canvas class="thunder weather-icon" width="128" height="128"></canvas>
-            <p class="lead current-desc">${element.weather[0].description}</p>
-          </a>
-        </li>`;
-        $("#cities-list").append(newItem);
+        addCity(element);
       });
       darkMode === "enabled" ? enableDarkMode() : null;
       activateSkycons();
-      // ${element.weather[0].class_name}
     },
   });
+
+  $("#search-btn").click(searchWeather);
+
+  function searchWeather() {
+    $.ajax({
+      url: "/addcity",
+      method: "POST",
+      data: JSON.stringify({ city_name: $("#address-input").val() }),
+      contentType: "application/json; charset=utf-8",
+      success: function (msg) {
+        console.log("Response: ", msg);
+        addCity(msg.city_weather);
+      },
+    });
+  }
+
+  function addCity(element) {
+    var newItem = `<li class="city-block text-center p-2">
+      <a href="/city/query" class="city-links">
+        <h2 class="city-name">${element.name}</h2>
+        <h1 class="display-4">${element.main.temp} °C</h1>
+        <canvas class="${element.weather[0].class_name} weather-icon" width="128" height="128"></canvas>
+        <p class="lead current-desc">${element.weather[0].description}</p>
+      </a>
+    </li>`;
+    $("#cities-list").append(newItem);
+    darkMode === "enabled" ? enableDarkMode() : null;
+    activateSkycons();
+  }
+  function activateSkycons() {
+    // SKYCONS animation references
+    var skycons = new Skycons();
+    var darkskycons = new Skycons({ color: "#cfcfcf" });
+
+    $(".rainy").each(function () {
+      skycons.add(this, Skycons.RAIN);
+    });
+    $(".rainy.dark").each(function () {
+      darkskycons.add(this, Skycons.RAIN);
+    });
+    $(".partly-cloudy-night").each(function () {
+      skycons.add(this, Skycons.PARTLY_CLOUDY_NIGHT);
+    });
+    $(".partly-cloudy-night.dark").each(function () {
+      darkskycons.add(this, Skycons.PARTLY_CLOUDY_NIGHT);
+    });
+    $(".clear-day").each(function () {
+      skycons.add(this, Skycons.CLEAR_DAY);
+    });
+    $(".clear-day.dark").each(function () {
+      darkskycons.add(this, Skycons.CLEAR_DAY);
+    });
+    $(".clear-night").each(function () {
+      skycons.add(this, Skycons.CLEAR_NIGHT);
+    });
+    $(".clear-night.dark").each(function () {
+      darkskycons.add(this, Skycons.CLEAR_NIGHT);
+    });
+    $(".partly-cloudy-day").each(function () {
+      skycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
+    });
+    $(".partly-cloudy-day.dark").each(function () {
+      darkskycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
+    });
+    $(".thunder").each(function () {
+      skycons.add(this, Skycons.RAIN);
+    });
+    $(".thunder.dark").each(function () {
+      darkskycons.add(this, Skycons.RAIN);
+    });
+    $(".fog").each(function () {
+      skycons.add(this, Skycons.FOG);
+    });
+    $(".fog.dark").each(function () {
+      darkskycons.add(this, Skycons.FOG);
+    });
+    $(".snow").each(function () {
+      skycons.add(this, Skycons.SNOW);
+    });
+    $(".snow.dark").each(function () {
+      darkskycons.add(this, Skycons.SNOW);
+    });
+    $(".cloudy").each(function () {
+      skycons.add(this, Skycons.CLOUDY);
+    });
+    $(".cloudy.dark").each(function () {
+      darkskycons.add(this, Skycons.CLOUDY);
+    });
+    $(".wind").each(function () {
+      skycons.add(this, Skycons.WIND);
+    });
+    $(".wind.dark").each(function () {
+      darkskycons.add(this, Skycons.WIND);
+    });
+    $(".showers-day").each(function () {
+      skycons.add(this, Skycons.RAIN);
+    });
+    $(".showers-day.dark").each(function () {
+      darkskycons.add(this, Skycons.RAIN);
+    });
+    $(".showers-night").each(function () {
+      skycons.add(this, Skycons.RAIN);
+    });
+    $(".showers-night.dark").each(function () {
+      darkskycons.add(this, Skycons.RAIN);
+    });
+
+    skycons.play();
+    darkskycons.play();
+  }
 });
-
-function activateSkycons() {
-  // SKYCONS animation references
-  var skycons = new Skycons();
-  var darkskycons = new Skycons({ color: "#cfcfcf" });
-
-  $(".rainy").each(function () {
-    skycons.add(this, Skycons.RAIN);
-  });
-  $(".rainy.dark").each(function () {
-    darkskycons.add(this, Skycons.RAIN);
-  });
-  $(".partly-cloudy-night").each(function () {
-    skycons.add(this, Skycons.PARTLY_CLOUDY_NIGHT);
-  });
-  $(".partly-cloudy-night.dark").each(function () {
-    darkskycons.add(this, Skycons.PARTLY_CLOUDY_NIGHT);
-  });
-  $(".clear-day").each(function () {
-    skycons.add(this, Skycons.CLEAR_DAY);
-  });
-  $(".clear-day.dark").each(function () {
-    darkskycons.add(this, Skycons.CLEAR_DAY);
-  });
-  $(".clear-night").each(function () {
-    skycons.add(this, Skycons.CLEAR_NIGHT);
-  });
-  $(".clear-night.dark").each(function () {
-    darkskycons.add(this, Skycons.CLEAR_NIGHT);
-  });
-  $(".partly-cloudy-day").each(function () {
-    skycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
-  });
-  $(".partly-cloudy-day.dark").each(function () {
-    darkskycons.add(this, Skycons.PARTLY_CLOUDY_DAY);
-  });
-  $(".thunder").each(function () {
-    skycons.add(this, Skycons.THUNDER_SHOWERS_NIGHT);
-  });
-  $(".thunder.dark").each(function () {
-    darkskycons.add(this, Skycons.THUNDER_SHOWERS_NIGHT);
-  });
-  $(".fog").each(function () {
-    skycons.add(this, Skycons.FOG);
-  });
-  $(".fog.dark").each(function () {
-    darkskycons.add(this, Skycons.FOG);
-  });
-  $(".snow").each(function () {
-    skycons.add(this, Skycons.SNOW);
-  });
-  $(".snow.dark").each(function () {
-    darkskycons.add(this, Skycons.SNOW);
-  });
-  $(".cloudy").each(function () {
-    skycons.add(this, Skycons.CLOUDY);
-  });
-  $(".cloudy.dark").each(function () {
-    darkskycons.add(this, Skycons.CLOUDY);
-  });
-  $(".wind").each(function () {
-    skycons.add(this, Skycons.WIND);
-  });
-  $(".wind.dark").each(function () {
-    darkskycons.add(this, Skycons.WIND);
-  });
-  $(".showers-day").each(function () {
-    skycons.add(this, Skycons.SHOWERS_DAY);
-  });
-  $(".showers-day.dark").each(function () {
-    darkskycons.add(this, Skycons.SHOWERS_DAY);
-  });
-  $(".showers-night").each(function () {
-    skycons.add(this, Skycons.SHOWERS_NIGHT);
-  });
-  $(".showers-night.dark").each(function () {
-    darkskycons.add(this, Skycons.SHOWERS_NIGHT);
-  });
-
-  skycons.play();
-  darkskycons.play();
-}

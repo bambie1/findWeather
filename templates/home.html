@@ -1,12 +1,14 @@
 {% include 'header.html' %}
 
 <div class="home container">
-  <form action="{{ url_for('add_city') }}" method="post" class="d-flex flex-column flex-md-row input-group mb-5">
+  <!-- <form action="{{ url_for('add_city') }}" method="post" class="d-flex flex-column flex-md-row input-group mb-5"> -->
+  <div class="d-flex flex-column flex-md-row input-group mb-5">
     <input type="search" name="cityName" id="address-input" class="form-control"
       placeholder="Please enter a city to search" aria-label="City name">
     <button id="search-btn" class="align-self-center btn btn-outline-secondary" type="submit" id="button-addon2">Add
       city</button>
-  </form>
+  </div>
+  <!-- </form> -->
 
   <ul id="cities-list" class="cities-list d-flex justify-content-center px-0 flex-wrap">
     {% if cities_weather is defined %}
@@ -25,4 +27,14 @@
 </div>
 </div>
 
+<script>
+  function activatePlacesSearch() {
+    var input = document.getElementById("address-input");
+    var options = {
+      types: ['(cities)']
+    };
+    var autocomplete = new google.maps.places.Autocomplete(input, options)
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=activatePlacesSearch"></script>
 {% include "footer.html" %}

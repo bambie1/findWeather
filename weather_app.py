@@ -7,42 +7,42 @@ import calendar
 from icon_dictionary import code_to_class
 
 app = Flask(__name__)
-current_cities_weather = []
+current_cities_weather = [] 
 
-def get_current_weather(city_lat, city_long):
-  c_res = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={city_lat}&lon={city_long}&appid={config.APP_ID}&units=metric").json()
-  # print(f"city: {c_res['name']}, temp: {c_res['main']['temp']}")
-  return c_res
-
-def get_coordinates(city_name):
+def get_current_weather(city_name):
   geolocator = Nominatim(user_agent="weather_app")
   location = geolocator.geocode(city_name)
-  return {"latitude": location.latitude, "longitude": location.longitude}
+  print(location)
+
+  current_weather = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={location.latitude}&lon={location.longitude}&appid={config.APP_ID}&units=metric").json()
+  # print(current_weather)
+  return current_weather
   
 @app.route("/")
 def index():
-  print(len(current_cities_weather))
+  # print(len(current_cities_weather))
   return render_template('home.html', cities_weather=current_cities_weather)
 
 @app.route("/addcity", methods=['POST'])
 def add_city():
-  city = request.form["cityName"]
-  get_coordinates(city)
-  return redirect(url_for('get_cities'))
+  data = request.get_json()
+  city = data["city_name"]
+  weather_info = get_current_weather(city)
+  w_code = weather_info["weather"][0]["icon"]
+  weather_info["weather"][0]["class_name"] = code_to_class[w_code]
+  return {"city_weather": weather_info}
 
-@app.route("/cities", methods=["GET", "POST"])
+@app.route("/cities", methods=["POST"])
 def get_cities():
   if request.method == "POST":
     current_cities_weather = []
     data = request.get_json()
-    print(data)
+    # print(data)
     for city in data["cities"]:
-      coordinates = get_coordinates(city)
-      weather_obj = get_current_weather(coordinates["latitude"], coordinates["longitude"])
+      weather_obj = get_current_weather(city)
       w_code = weather_obj["weather"][0]["icon"]
       weather_obj["weather"][0]["class_name"] = code_to_class[w_code]
       current_cities_weather.append(weather_obj)  
-  # return {"message": "Complete post"}
   return {"cities_weather": current_cities_weather}
 
 @app.route("/city/<string:city_name>")

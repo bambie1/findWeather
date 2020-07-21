@@ -117,7 +117,12 @@ a {
   border: 1px solid #cfcfcf;
   color: #cfcfcf;
 }
-
+.pac-container {
+  background: #e9e9e9;
+}
+.pac-container.dark {
+  background: rgba(100, 16, 53, 1);
+}
 @media only screen and (min-width: 568px) {
   .content {
     min-height: 60vh;
