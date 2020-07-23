@@ -15,6 +15,9 @@ body.dark {
   color: #cfcfcf;
   width: 100%;
 }
+.home {
+  overflow-y: auto;
+}
 nav {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -46,13 +49,13 @@ form {
 .current-icon {
   max-width: 11vw;
 }
+.weekday,
 .weather-desc {
+  font-size: 0.7rem;
   text-transform: uppercase;
-  font-size: 0.7rem;
-  /* margin-top: 1em; */
 }
-.weekday {
-  font-size: 0.7rem;
+.current-desc,
+.city-name {
   text-transform: uppercase;
 }
 .day {
@@ -81,6 +84,9 @@ form {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+#address-input {
+  max-width: 370px;
+}
 #address-input.dark {
   color: white;
   background: #424f76;
@@ -107,11 +113,23 @@ form {
 }
 .city-block:hover {
   transform: scale(1.1);
-  transition-duration: 2s;
+  transition-duration: 1.5s;
 }
 a {
   text-decoration: none !important;
   color: inherit;
+}
+.city-links:hover {
+  color: inherit;
+}
+.city-name {
+  font-family: Montserrat;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.city-block-temp {
+  font-weight: normal;
 }
 #search-btn.dark {
   border: 1px solid #cfcfcf;
@@ -140,7 +158,7 @@ a {
     order: 2;
   }
   .city-block {
-    width: auto;
+    width: 240px;
   }
 }
 
@@ -154,6 +172,8 @@ a {
       #e1dad0 60%,
       #cec0b2 100%
     );
+    min-height: 60vh;
+    height: 60vh;
   }
   .content.dark {
     background: linear-gradient(

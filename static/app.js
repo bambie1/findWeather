@@ -22,21 +22,23 @@ $(document).ready(function () {
   });
   activateSkycons();
 
-  var cities = ["Ottawa", "Port Harcourt"];
-  $.ajax({
-    url: "/cities",
-    method: "POST",
-    data: JSON.stringify({ cities: cities }),
-    contentType: "application/json; charset=utf-8",
-    success: function (msg) {
-      msg.cities_weather.forEach((element) => {
-        addCity(element);
-      });
-      darkMode === "enabled" ? enableDarkMode() : null;
-      activateSkycons();
-    },
-  });
-
+  var cities = JSON.parse(localStorage.getItem("cities"));
+  console.log("cities: ", cities);
+  if (cities) {
+    $.ajax({
+      url: "/cities",
+      method: "POST",
+      data: JSON.stringify({ cities: cities }),
+      contentType: "application/json; charset=utf-8",
+      success: function (msg) {
+        msg.cities_weather.forEach((element) => {
+          addCityToList(element);
+        });
+        darkMode === "enabled" ? enableDarkMode() : null;
+        activateSkycons();
+      },
+    });
+  } else cities = [];
   $("#search-btn").click(searchWeather);
 
   function searchWeather() {
@@ -46,25 +48,49 @@ $(document).ready(function () {
       data: JSON.stringify({ city_name: $("#address-input").val() }),
       contentType: "application/json; charset=utf-8",
       success: function (msg) {
-        console.log("Response: ", msg);
+        // console.log("Response: ", msg);
+        $("#address-input").val("");
         addCity(msg.city_weather);
       },
     });
   }
 
+  // <a href="/city/${element.city_string}" class="city-links">
+  // <h3 class="city-name">${element.city_string}</h3>
   function addCity(element) {
+    var cityExists = false;
+    cities.forEach((city) => {
+      if (
+        city.city_string == element.city_string &&
+        city.country_string == element.country_string
+      ) {
+        cityExists = true;
+      }
+    });
+    if (!cityExists) {
+      addCityToList(element);
+      cities.unshift(element);
+      localStorage.setItem("cities", JSON.stringify(cities));
+    } else alert("This city has been added already");
+  }
+
+  function addCityToList(element) {
     var newItem = `<li class="city-block text-center p-2">
-      <a href="/city/query" class="city-links">
-        <h2 class="city-name">${element.name}</h2>
-        <h1 class="display-4">${element.main.temp} °C</h1>
-        <canvas class="${element.weather[0].class_name} weather-icon" width="128" height="128"></canvas>
-        <p class="lead current-desc">${element.weather[0].description}</p>
+      <a href="/city/${element.city_string}" class="city-links">
+      <h3 class="city-name">${element.city_string}</h3>
+      <h4 class="city-block-temp">${Math.round(element.main.temp)} °C</h4>
+      <canvas class="${
+        element.weather[0].class_name
+      } weather-icon" width="128" height="128"></canvas>
+        <p class="current-desc">${element.weather[0].main}</p>
       </a>
     </li>`;
-    $("#cities-list").append(newItem);
+    $("#cities-list").prepend(newItem);
+    darkMode = localStorage.getItem("darkMode");
     darkMode === "enabled" ? enableDarkMode() : null;
     activateSkycons();
   }
+
   function activateSkycons() {
     // SKYCONS animation references
     var skycons = new Skycons();

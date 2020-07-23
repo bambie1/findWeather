@@ -8,14 +8,16 @@ from icon_dictionary import code_to_class
 
 app = Flask(__name__)
 current_cities_weather = [] 
+geolocator = Nominatim(user_agent="weather_app")
 
 def get_current_weather(city_name):
-  geolocator = Nominatim(user_agent="weather_app")
   location = geolocator.geocode(city_name)
   print(location)
-
-  current_weather = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={location.latitude}&lon={location.longitude}&appid={config.APP_ID}&units=metric").json()
+  if location != None:
+    current_weather = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={location.latitude}&lon={location.longitude}&appid={config.APP_ID}&units=metric").json()
   # print(current_weather)
+  else:
+    current_weather = {"error": "Couldn't find weather for this location"}
   return current_weather
   
 @app.route("/")
@@ -30,6 +32,10 @@ def add_city():
   weather_info = get_current_weather(city)
   w_code = weather_info["weather"][0]["icon"]
   weather_info["weather"][0]["class_name"] = code_to_class[w_code]
+  city_array = city.split(",")
+  weather_info["city_string"] = city_array[0]
+  weather_info["country_string"] = city_array[len(city_array)-1]
+  # print(weather_info)
   return {"city_weather": weather_info}
 
 @app.route("/cities", methods=["POST"])
@@ -39,16 +45,18 @@ def get_cities():
     data = request.get_json()
     # print(data)
     for city in data["cities"]:
-      weather_obj = get_current_weather(city)
+      weather_obj = get_current_weather(""+city['city_string'] + ", " + city['country_string'])
       w_code = weather_obj["weather"][0]["icon"]
       weather_obj["weather"][0]["class_name"] = code_to_class[w_code]
+      weather_obj["city_string"] = city["city_string"]
+      weather_obj["country_string"] = city["country_string"]
       current_cities_weather.append(weather_obj)  
   return {"cities_weather": current_cities_weather}
 
 @app.route("/city/<string:city_name>")
 def search_city(city_name):
-  city = "Moscow" #city_name
-  w_res = requests.get(f'https://api.openweathermap.org/data/2.5/onecall?lat=45.6972&lon=-75.4215&exclude=hourly,minutely&appid={config.APP_ID}&units=metric').json()
+  location = geolocator.geocode(city_name)
+  w_res = requests.get(f'https://api.openweathermap.org/data/2.5/onecall?lat={location.latitude}&lon={location.longitude}&exclude=hourly,minutely&appid={config.APP_ID}&units=metric').json()
   
   #add class to current weather
   w_code = w_res["current"]["weather"][0]["icon"]
