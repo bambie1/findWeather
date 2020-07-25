@@ -17,6 +17,11 @@ body.dark {
 }
 .home {
   overflow-y: auto;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 nav {
   border-top-left-radius: 10px;
@@ -25,12 +30,13 @@ nav {
 nav.dark {
   background-color: transparent !important;
 }
-form {
-  max-width: 400px;
-  margin: auto;
-}
 #brand {
   font-weight: 800;
+}
+#error-text {
+  display: none;
+  color: red;
+  font-size: 0.8rem;
 }
 .date {
   color: grey;
@@ -63,7 +69,7 @@ form {
   border-radius: 7px;
   text-align: center;
   background: #e4e0db;
-  width: 121px;
+  width: 24vw;
   margin-bottom: 1vh;
   box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
 }
@@ -84,9 +90,7 @@ form {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-#address-input {
-  max-width: 370px;
-}
+
 #address-input.dark {
   color: white;
   background: #424f76;
@@ -141,12 +145,21 @@ a {
 .pac-container.dark {
   background: rgba(100, 16, 53, 1);
 }
-@media only screen and (min-width: 568px) {
+@media only screen and (min-width: 539px) {
   .content {
     min-height: 60vh;
+    width: 100%;
+  }
+  #address-input {
+    width: 400px;
+    margin: auto;
   }
   .min-max-temp {
     order: 4;
+  }
+  .home {
+    padding-right: 0px;
+    padding-left: 0px;
   }
   .extra-weather-info {
     order: 3;
@@ -162,7 +175,13 @@ a {
   }
 }
 
-@media (min-height: 450px) and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
+  .day {
+    width: 121px;
+  }
+}
+
+@media (min-height: 450px) and (min-width: 947px) {
   .content {
     border-radius: 12px;
     box-shadow: 5px 5px 5px #696464;
@@ -173,7 +192,8 @@ a {
       #cec0b2 100%
     );
     min-height: 60vh;
-    height: 60vh;
+    max-height: 70vh;
+    max-width: 90%;
   }
   .content.dark {
     background: linear-gradient(

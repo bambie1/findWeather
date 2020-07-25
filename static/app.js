@@ -25,12 +25,14 @@ $(document).ready(function () {
   var cities = JSON.parse(localStorage.getItem("cities"));
   console.log("cities: ", cities);
   if (cities) {
+    $("#loader").css("display", "block");
     $.ajax({
       url: "/cities",
       method: "POST",
       data: JSON.stringify({ cities: cities }),
       contentType: "application/json; charset=utf-8",
       success: function (msg) {
+        $("#loader").css("display", "none");
         msg.cities_weather.forEach((element) => {
           addCityToList(element);
         });
@@ -49,8 +51,13 @@ $(document).ready(function () {
       contentType: "application/json; charset=utf-8",
       success: function (msg) {
         // console.log("Response: ", msg);
-        $("#address-input").val("");
         addCity(msg.city_weather);
+        $("#address-input").val("");
+        $("#error-text").css("display", "none");
+      },
+      error: function (error) {
+        console.log("error: ", error);
+        $("#error-text").css("display", "block");
       },
     });
   }

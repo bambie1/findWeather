@@ -1,29 +1,17 @@
 {% include 'header.html' %}
 
-
-<!-- <form action="{{ url_for('add_city') }}" method="post" class="d-flex flex-column flex-md-row input-group mb-5"> -->
-<div class="d-flex flex-column flex-md-row justify-content-center mb-5">
-  <input type="search" name="cityName" id="address-input" class="form-control align-self-center"
-    placeholder="Please enter a city to search" aria-label="City name">
+<div class="search-area d-flex flex-column flex-md-row justify-content-center">
+  <div class="d-block">
+    <input type="search" name="cityName" id="address-input" class="form-control"
+      placeholder="Please enter a city to search" aria-label="City name">
+    <span id="error-text" class="text-center">Couldn't obtain weather for this location</span>
+  </div>
   <button id="search-btn" class="align-self-center btn btn-outline-secondary" type="submit" id="button-addon2">Add
     city</button>
 </div>
-<!-- </form> -->
-<div class="home container">
-  <ul id="cities-list" class="cities-list d-flex justify-content-center px-0 flex-wrap">
-    {% if cities_weather is defined %}
-    {% for city in cities_weather%}
-    <li class="city-block text-center p-2">
-      <a href="/city/query" class="city-links">
-        <h3 class="city-name">{{city.name}}</h3>
-        <h1 class="display-4">{{city.main.temp|int}} °C</h1>
-        <canvas class="{{city.weather[0].class_name}} weather-icon" width="128" height="128"></canvas>
-        <p class="lead current-desc">{{city.weather[0].description}}</p>
-      </a>
-    </li>
-    {% endfor %}
-    {% endif %}
-  </ul>
+<div class="home mt-5">
+  <div id="loader"></div>
+  <ul id="cities-list" class="cities-list d-flex justify-content-center pt-2 px-0 flex-wrap"></ul>
 </div>
 </div>
 
