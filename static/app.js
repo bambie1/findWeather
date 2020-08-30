@@ -42,6 +42,8 @@ $(document).ready(function () {
     });
   } else cities = [];
   $("#search-btn").click(searchWeather);
+  $("#date").html(new Date());
+  $("#farenheit").click(convertTemp);
 
   function searchWeather() {
     $.ajax({
@@ -50,7 +52,7 @@ $(document).ready(function () {
       data: JSON.stringify({ city_name: $("#address-input").val() }),
       contentType: "application/json; charset=utf-8",
       success: function (msg) {
-        // console.log("Response: ", msg);
+        console.log("Response: ", msg);
         addCity(msg.city_weather);
         $("#address-input").val("");
         $("#error-text").css("display", "none");
@@ -58,18 +60,19 @@ $(document).ready(function () {
       error: function (error) {
         console.log("error: ", error);
         $("#error-text").css("display", "block");
+        $("#error-text").html("Couldn't obtain weather for this location");
       },
     });
   }
 
-  // <a href="/city/${element.city_string}" class="city-links">
-  // <h3 class="city-name">${element.city_string}</h3>
+  function convertTemp() {}
+
   function addCity(element) {
     var cityExists = false;
     cities.forEach((city) => {
       if (
         city.city_string == element.city_string &&
-        city.country_string == element.country_string
+        city.sys.country == element.sys.country
       ) {
         cityExists = true;
       }
@@ -78,14 +81,21 @@ $(document).ready(function () {
       addCityToList(element);
       cities.unshift(element);
       localStorage.setItem("cities", JSON.stringify(cities));
-    } else alert("This city has been added already");
+    } else {
+      $("#error-text").css("display", "block");
+      $("#error-text").html("This city has already been added");
+    }
   }
 
   function addCityToList(element) {
     var newItem = `<li class="city-block text-center p-2">
-      <a href="/city/${element.city_string}" class="city-links">
-      <h3 class="city-name">${element.city_string}</h3>
-      <h4 class="city-block-temp">${Math.round(element.main.temp)} °C</h4>
+      <a href="/city/${element.city_string},${
+      element.sys.country
+    }" class="city-links">
+      <h3 class="city-name">${element.city_string}, <sup class="coutry-sup">${
+      element.sys.country
+    }</sup></h3>
+      <h4 class="city-block-temp temp">${Math.round(element.main.temp)} °C</h4>
       <canvas class="${
         element.weather[0].class_name
       } weather-icon" width="128" height="128"></canvas>

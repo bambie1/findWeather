@@ -20,20 +20,23 @@
 <body>
   <!-- Image and text -->
   <div class="content d-flex flex-column px-0 py-2">
-    <nav class="navbar navbar-light justify-content-around bg-transparent"
-      style="background-color: rgb(255, 255, 240);">
-      <span id="brand"><a href="/">WEATHER-io</a></span>
-      <div class="units d-flex align-items-center">
-        <a href="">°C</a>
-        <p class="mx-2 my-0">|</p>
-        <a href="">°F</a>
-      </div>
-      <div class="align-items-center d-flex">
-        <span class="mr-1"><i class="far fa-lightbulb"></i></span>
-        <label id="light-dark-theme" class="switch mb-0">
-          <input type="checkbox">
-          <span class="slider round"></span>
-        </label>
-        <span class="ml-1"><i class="fas fa-moon"></i></span>
+    <nav class="navbar navbar-light justify-content-around bg-transparent row">
+      <span id="brand" class="col-sm-7"><a href="/">WEATHER-io</a></span>
+
+      <div class="controls col-sm-5">
+        <div class="units d-flex align-items-center">
+          <p class="mb-0"><span id="celsius">°C</span><span class="mx-2 my-0">|</span><span id="farenheit">°F</span></p>
+          <!-- <a href="">°C</a>
+          <p class="mx-2 my-0">|</p>
+          <a href="">°F</a> -->
+        </div>
+        <div class="align-items-center d-flex">
+          <span class="mr-1"><i class="far fa-lightbulb"></i></span>
+          <label id="light-dark-theme" class="switch mb-0">
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label>
+          <span class="ml-1"><i class="fas fa-moon"></i></span>
+        </div>
       </div>
     </nav>

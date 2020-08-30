@@ -26,12 +26,15 @@ body.dark {
 nav {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 nav.dark {
   background-color: transparent !important;
 }
 #brand {
   font-weight: 800;
+  text-align: center;
 }
 #error-text {
   display: none;
@@ -116,7 +119,7 @@ nav.dark {
   background: transparent;
 }
 .city-block:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition-duration: 1.5s;
 }
 a {
@@ -145,10 +148,20 @@ a {
 .pac-container.dark {
   background: rgba(100, 16, 53, 1);
 }
+#no-trips {
+  display: none;
+}
+.controls {
+  display: flex;
+  justify-content: space-around;
+}
 @media only screen and (min-width: 539px) {
   .content {
     min-height: 60vh;
     width: 100%;
+  }
+  nav {
+    flex-direction: row;
   }
   #address-input {
     width: 400px;
@@ -167,7 +180,7 @@ a {
   .location {
     order: 1;
   }
-  .date {
+  #date {
     order: 2;
   }
   .city-block {

@@ -18,8 +18,8 @@
           <p class="mr-4"><i class="fas fa-wind mr-2"></i> {{forecast[0].wind_speed}} m/s</p>
           <p><i class="fas fa-umbrella mr-2"></i> {{forecast[0].humidity}} %</p>
         </div>
-        <h3 class="location"><i class="fas fa-map-marker-alt mr-2"></i> Ottawa, CA</h3>
-        <span class="date">Monday, July 13, 2020 @ 7:30pm EST</span>
+        <h3 class="location"><i class="fas fa-map-marker-alt mr-2"></i>{{current.city_country}}</h3>
+        <span id="date">Monday, July 13, 2020 @ 7:30pm EST</span>
       </div>
     </div>
     <hr>
@@ -29,7 +29,7 @@
         <h2 class="weekday">{{day.weekday}}</h2>
         <span class="day-temp">{{day.temp.day|int}}<sup>°C</sup></span>
         <canvas class="{{day.weather[0].class_name}} weather-icon align-self-center" width="40" height="40"></canvas>
-        <span class="weather-desc">{{day.weather[0].description}}</span>
+        <span class="weather-desc">{{day.weather[0].main}}</span>
         <!-- The description can be changed to main as you like -->
       </li>
       {% endfor %}
