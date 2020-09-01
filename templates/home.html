@@ -11,7 +11,11 @@
 </div>
 <div class="home mt-5">
   <div id="loader"></div>
-  <div id="no-trips"></div>
+  <div id="no-trips" class="jumbotron">
+    <h1>Welcome to Weather-io!</h1>
+    <p>You can get the current weather and 5-day forecast for any city on the globe.</p>
+    <button class="btn btn-secondary" onclick="focusInput()">Find a city</button>
+  </div>
   <ul id="cities-list" class="cities-list d-flex justify-content-center pt-2 px-0 flex-wrap"></ul>
 </div>
 </div>
@@ -23,6 +27,9 @@
       types: ['(cities)']
     };
     var autocomplete = new google.maps.places.Autocomplete(input, options)
+  }
+  function focusInput() {
+    document.getElementById("address-input").focus();
   }
 </script>
 <script

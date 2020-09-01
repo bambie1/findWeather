@@ -23,7 +23,7 @@ $(document).ready(function () {
   activateSkycons();
 
   var cities = JSON.parse(localStorage.getItem("cities"));
-  console.log("cities: ", cities);
+  // console.log("cities: ", cities);
   if (cities) {
     $("#loader").css("display", "block");
     $.ajax({
@@ -40,12 +40,16 @@ $(document).ready(function () {
         activateSkycons();
       },
     });
-  } else cities = [];
+  } else {
+    $("#no-trips").css("display", "block");
+    cities = [];
+  }
   $("#search-btn").click(searchWeather);
   $("#date").html(new Date());
   $("#farenheit").click(convertTemp);
 
   function searchWeather() {
+    $("#no-trips").css("display", "none");
     $.ajax({
       url: "/addcity",
       method: "POST",

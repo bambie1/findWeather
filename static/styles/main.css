@@ -1,5 +1,9 @@
 body {
-  background: linear-gradient(to bottom, #e9e9e9 0%, #e1dad0 60%, #cec0b2 100%);
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: linear-gradient(to bottom, #e9e9e9 0%, #e1dad0 60%, #cec0b2 100%)
+    fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,10 +12,11 @@ body {
 }
 body.dark {
   background: linear-gradient(
-    90deg,
-    rgba(100, 16, 53, 1) 0%,
-    rgba(59, 93, 132, 1) 100%
-  );
+      90deg,
+      rgba(100, 16, 53, 1) 0%,
+      rgba(59, 93, 132, 1) 100%
+    )
+    fixed;
   color: #cfcfcf;
   width: 100%;
 }
@@ -86,6 +91,11 @@ nav.dark {
 }
 .content {
   min-height: 100vh;
+  width: 100%;
+}
+.search-area {
+  width: 80%;
+  align-self: center;
 }
 .daily-forecast-list {
   list-style: none;
@@ -105,7 +115,8 @@ nav.dark {
 .cities-list {
   list-style: none;
 }
-.city-block {
+.city-block,
+.jumbotron {
   border: 1px solid grey;
   border-radius: 3%;
   background: linear-gradient(to bottom, #e9e9e9 0%, #e1dad0 60%, #cec0b2 100%);
@@ -114,7 +125,8 @@ nav.dark {
   margin: 0 2vw 2vh;
   width: 100%;
 }
-.city-block.dark {
+.city-block.dark,
+.jumbotron.dark {
   box-shadow: 5px 5px 5px rgba(145, 145, 145, 0.6);
   background: transparent;
 }
@@ -150,6 +162,7 @@ a {
 }
 #no-trips {
   display: none;
+  text-align: center;
 }
 .controls {
   display: flex;
@@ -159,6 +172,9 @@ a {
   .content {
     min-height: 60vh;
     width: 100%;
+  }
+  #no-trips {
+    margin: 0px 15px;
   }
   nav {
     flex-direction: row;
